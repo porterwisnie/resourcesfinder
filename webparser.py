@@ -2,8 +2,8 @@
 import requests
 from bs4 import BeautifulSoup as bs4
 import time
+#next step is to find all a tags in each post link
 def post_finder(subreddit):
-    
 
     url = 'https://new.reddit.com/r/'+subreddit+'/top/?t=all'
 
