@@ -2,7 +2,6 @@
 import requests
 from bs4 import BeautifulSoup as bs4
 import time
-#next step is to find all a tags in each post link
 
 post_links = []
 
