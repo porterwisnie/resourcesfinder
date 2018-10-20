@@ -7,7 +7,7 @@ post_links = []
 
 links_in_posts = set()
 
-headers = {'user-agent':'crawler for programming resources from subreddits porterwisnie resourcesmaster'}
+headers = {'user-agent':'crawler for programming resources from subreddits |  github:porterwisnie  |  repo:resourcesmaster  |'}
 
 def post_finder(subreddit):
 
