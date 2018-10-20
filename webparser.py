@@ -26,22 +26,22 @@ def post_finder(subreddit):
 
 def comment_parser(post):
 
-	for link in post:
+    for link in post:
 
-		r = requests.get(link,headers=headers)
+        r = requests.get(link,headers=headers)
 
-		soup2 = bs4(r.text,'lxml')
+        soup2 = bs4(r.text,'lxml')
 
-		links_in_posts = []
+        links_in_posts = []
 
-		for item in soup2.find_all('a'):
-			link = item.get('href')
-			if link[0:4] == 'http':
-				links_in_posts.append(link)  
+        for item in soup2.find_all('a'):
+            link = item.get('href')
+            if link[0:4] == 'http':
+                links_in_posts.append(link)  
 
-		print(links_in_posts)
+        print(links_in_posts)
 
-		time.sleep(2)
+        time.sleep(2)
 subreddits_to_crawl = ['learnpython']
 
 for sub in subreddits_to_crawl:
