@@ -5,6 +5,8 @@ import time
 
 post_links = []
 
+links_in_posts = set()
+
 headers = {'user-agent':'crawler for programming resources from subreddits porterwisnie resourcesmaster'}
 
 def post_finder(subreddit):
@@ -22,7 +24,7 @@ def post_finder(subreddit):
         if 'comments' in link and 'http' in link:
             post_links.append(link)
   
-    time.sleep(2)
+    time.sleep(1.5)
 
 def comment_parser(post):
 
@@ -30,18 +32,18 @@ def comment_parser(post):
 
         r = requests.get(link,headers=headers)
 
-        soup2 = bs4(r.text,'lxml')
-
-        links_in_posts = []
+        soup2 = bs4(r.text,'lxml') 
 
         for item in soup2.find_all('a'):
             link = item.get('href')
-            if link[0:4] == 'http':
-                links_in_posts.append(link)  
+            try:
+                if link[0:4] == 'http':
+                    links_in_posts.add(link)  
+            except:
+                pass
+        time.sleep(1.5)
+    print(links_in_posts)
 
-        print(links_in_posts)
-
-        time.sleep(2)
 subreddits_to_crawl = ['learnpython']
 
 for sub in subreddits_to_crawl:
