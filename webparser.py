@@ -42,10 +42,10 @@ def comment_parser(post):
             except:
                 pass
         time.sleep(1.5)
-    print(links_in_posts)
 
 subreddits_to_crawl = ['learnpython']
 
 for sub in subreddits_to_crawl:
     post_finder(sub)
 comment_parser(post_links)
+print(links_in_posts)
