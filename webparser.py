@@ -21,9 +21,11 @@ def post_finder(subreddit):
 
 
     for link in all_outbound_links:
-        if 'comments' in link and 'http' in link:
-            post_links.append(link)
-  
+        try:
+            if 'comments' in link and 'http' in link:
+                post_links.append(link)
+        except:
+            print('error')
     time.sleep(1.5)
 
 def comment_parser(post):
@@ -35,17 +37,20 @@ def comment_parser(post):
         soup2 = bs4(r.text,'lxml') 
 
         for item in soup2.find_all('a'):
-            link = item.get('href')
+            link2 = item.get('href')
             try:
-                if link[0:4] == 'http':
-                    links_in_posts.add(link)  
+                if link2[0:4] == 'http' and 'reddit.com/user' not in link2 and 'RemindMeBot' not in link2:
+                    links_in_posts.add(link2)  
             except:
                 pass
         time.sleep(1.5)
+    print(links_in_posts)
 
-subreddits_to_crawl = ['learnpython']
+subreddits_to_crawl = ['learnpython','learnjava','css','learnjavascript']
 
 for sub in subreddits_to_crawl:
+    print(sub)
     post_finder(sub)
-comment_parser(post_links)
-print(links_in_posts)
+    comment_parser(post_links)
+    links_in_posts.clear()
+    post_links.clear()
